@@ -1,6 +1,6 @@
 ---
 title: "Resolve Shop Config"
-api: "GET https://api.sabivendor.com/api/v1/storefront/config/resolve"
+api: "GET https://api.getscale.ng/api/v1/storefront/config/resolve"
 ---
 
 Resolves a domain name or the active API key origin to retrieve the corresponding shop configuration, dynamic template bindings, custom theme settings, and primary Shop ID. 
@@ -18,7 +18,7 @@ Resolves a domain name or the active API key origin to retrieve the correspondin
 ### Query Parameters
 
 <ParamField query="domain" type="string" required>
-  The host name to resolve (e.g. `myshop.sabivendor.com`).
+  The host name to resolve (e.g. `myshop.getscale.ng`).
 </ParamField>
 
 
@@ -30,9 +30,9 @@ Resolves a domain name or the active API key origin to retrieve the correspondin
   "data": {
     "shopId": "d3b07384-d113-4e4e-9828-4e4e98284e4e",
     "shopName": "Best Shoes",
-    "shopLogo": "https://cdn.sabivendor.com/logos/shoes.png",
-    "shopBanner": "https://cdn.sabivendor.com/banners/shoes.png",
-    "domain": "myshop.sabivendor.com",
+    "shopLogo": "https://cdn.getscale.ng/logos/shoes.png",
+    "shopBanner": "https://cdn.getscale.ng/banners/shoes.png",
+    "domain": "myshop.getscale.ng",
     "themeColor": "#22162B",
     "fontFamily": "Inter",
     "templateId": "default",

@@ -11,7 +11,7 @@ Welcome to the Scale API Reference. This guide will walk you through setting up 
 
 Before making requests, make sure you have:
 
-- A registered store on Sabi / Scale.
+- A registered store on Scale.
 - Your store's **Shop ID** (available in your dashboard settings).
 - A **Public / Publishable Key** (`pk_...`) generated from the Developer tab in your dashboard.
 
@@ -38,7 +38,7 @@ Follow these steps to query products on your custom storefront website or mobile
     Make a request to fetch all active products for your store:
     
     ```bash
-    curl -X GET "https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products" \
+    curl -X GET "https://api.getscale.ng/api/v1/storefront/shop/YOUR_SHOP_ID/products" \
       -H "X-Shop-API-Key: pk_live_YOUR_KEY"
     ```
   </Step>

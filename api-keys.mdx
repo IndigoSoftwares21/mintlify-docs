@@ -3,7 +3,7 @@ title: API Keys & Authentication
 description: Learn how to authenticate your headless requests and manage API keys
 ---
 
-All requests to the Sabi Vendor API are authenticated using API keys. Sabi Vendor uses a **dual-key security model** to protect your store's resources while allowing browser-side client requests.
+All requests to the Scale API are authenticated using API keys. Scale uses a **dual-key security model** to protect your store's resources while allowing browser-side client requests.
 
 ---
 
@@ -75,13 +75,13 @@ Here is an example of fetching products using a Publishable Key in a request acr
 <Tabs>
   <Tab title="cURL">
     ```bash
-    curl -X GET "https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products" \
+    curl -X GET "https://api.getscale.ng/api/v1/storefront/shop/YOUR_SHOP_ID/products" \
       -H "X-Shop-API-Key: pk_live_abc123..."
     ```
   </Tab>
   <Tab title="JavaScript">
     ```javascript
-    fetch('https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products', {
+    fetch('https://api.getscale.ng/api/v1/storefront/shop/YOUR_SHOP_ID/products', {
       method: 'GET',
       headers: {
         'X-Shop-API-Key': 'pk_live_abc123...'
@@ -95,7 +95,7 @@ Here is an example of fetching products using a Publishable Key in a request acr
     ```javascript
     const axios = require('axios');
 
-    axios.get('https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products', {
+    axios.get('https://api.getscale.ng/api/v1/storefront/shop/YOUR_SHOP_ID/products', {
       headers: {
         'X-Shop-API-Key': 'pk_live_abc123...'
       }
@@ -107,7 +107,7 @@ Here is an example of fetching products using a Publishable Key in a request acr
   <Tab title="PHP">
     ```php
     <?php
-    $ch = curl_init('https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products');
+    $ch = curl_init('https://api.getscale.ng/api/v1/storefront/shop/YOUR_SHOP_ID/products');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'X-Shop-API-Key: pk_live_abc123...'
@@ -121,7 +121,7 @@ Here is an example of fetching products using a Publishable Key in a request acr
     ```python
     import requests
 
-    url = "https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products"
+    url = "https://api.getscale.ng/api/v1/storefront/shop/YOUR_SHOP_ID/products"
     headers = {
         "X-Shop-API-Key": "pk_live_abc123..."
     }
