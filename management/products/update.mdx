@@ -1,0 +1,99 @@
+---
+title: "Update Product"
+api: "PUT https://api.sabivendor.com/api/v1/hub/shop/{shopId}/product/{productId}"
+---
+
+Updates details, pricing, discount logic, or media of an existing product. 
+    
+    Supports:
+    1. Partial updates (pass only fields to change).
+    2. Uploading new images (`newMedia`) while keeping/reordering old ones (`oldMedia`).
+    3. Validates total images do not exceed 6.
+    4. Enforces discount type rules (percent discount cannot exceed 100%).
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="productId" type="number" required>
+  The unique ID of the product.
+</ParamField>
+
+### Request Body (Multipart / Form Data)
+
+<ParamField body="productName" type="string">
+  Name of the product.
+</ParamField>
+
+<ParamField body="productPrice" type="number">
+  Updated price in Kobo.
+</ParamField>
+
+<ParamField body="productQuantity" type="number">
+  Updated inventory stock.
+</ParamField>
+
+<ParamField body="isDiscountActive" type="boolean">
+  Activate discount pricing.
+</ParamField>
+
+<ParamField body="discountType" type="string">
+  Discount format: `percent` or `fixed`.
+</ParamField>
+
+<ParamField body="discountValue" type="number">
+  Discount value.
+</ParamField>
+
+<ParamField body="oldMedia" type="string">
+  JSON array string representing remaining existing images.
+</ParamField>
+
+<ParamField body="newMedia" type="file">
+  New image files to upload.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Product updated successfully",
+  "data": {
+    "id": 101,
+    "productName": "Premium Running Shoes",
+    "productPrice": 1400000,
+    "stockQuantity": 95,
+    "isActive": true
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "discountValue"
+      ],
+      "message": "Percentage discount cannot exceed 100%"
+    }
+  ]
+}
+```
+
+</ResponseExample>

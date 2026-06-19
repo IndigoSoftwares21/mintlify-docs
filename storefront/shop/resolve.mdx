@@ -1,0 +1,59 @@
+---
+title: "Resolve Shop Config"
+api: "GET https://api.sabivendor.com/api/v1/storefront/config/resolve"
+---
+
+Resolves a domain name or the active API key origin to retrieve the corresponding shop configuration, dynamic template bindings, custom theme settings, and primary Shop ID. 
+    
+    When loading your custom storefront headless frontend (e.g. Next.js, Gatsby, or Vue), you should call this endpoint first. The returned parameters let you dynamically bind theme colors, fonts, checkout variables, and announcement bar settings in real-time.
+
+
+### Query Parameters
+
+<ParamField query="domain" type="string">
+  The host name to resolve (e.g. `myshop.sabivendor.com`). If this parameter is omitted, the API will fall back to resolving the host from the browser's `Origin` or `Referer` headers.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": {
+    "shopId": "d3b07384-d113-4e4e-9828-4e4e98284e4e",
+    "shopName": "Best Shoes",
+    "shopLogo": "https://cdn.sabivendor.com/logos/shoes.png",
+    "shopBanner": "https://cdn.sabivendor.com/banners/shoes.png",
+    "domain": "myshop.sabivendor.com",
+    "themeColor": "#22162B",
+    "fontFamily": "Inter",
+    "templateId": "default",
+    "announcementBarText": "Free shipping on orders over ₦5000!",
+    "showAnnouncementBar": true,
+    "socialLinks": {
+      "instagram": "https://instagram.com/bestshoes"
+    },
+    "checkoutConfig": {
+      "guestCheckout": true
+    }
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "domain"
+      ],
+      "message": "Domain is required when origin headers cannot be resolved"
+    }
+  ]
+}
+```
+
+</ResponseExample>

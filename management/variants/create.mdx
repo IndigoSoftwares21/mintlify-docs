@@ -1,0 +1,81 @@
+---
+title: "Create Product Variant"
+api: "POST https://api.sabivendor.com/api/v1/hub/shop/{shopId}/product/{productId}/variants"
+---
+
+Adds a new SKU variant configuration to a product (e.g. Size: 44, Color: Blue) with variant-specific pricing, stock counts, and image uploads.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="productId" type="number" required>
+  The unique ID of the product.
+</ParamField>
+
+### Request Body (Multipart / Form Data)
+
+<ParamField body="variantPrice" type="number" required>
+  Variant-specific price in Kobo. Must be greater than 0.
+</ParamField>
+
+<ParamField body="stockQuantity" type="number" required>
+  Inventory count for this variant. Must be non-negative.
+</ParamField>
+
+<ParamField body="options" type="string" required>
+  JSON array representing options. Example: `[{"optionTypeName": "Color", "optionValueName": "Red"}]`.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Variant created successfully",
+  "data": {
+    "variantId": 12,
+    "variantPrice": 1250000,
+    "stockQuantity": 30,
+    "options": [
+      {
+        "optionTypeName": "Color",
+        "optionValueName": "Red"
+      },
+      {
+        "optionTypeName": "Size",
+        "optionValueName": "42"
+      }
+    ]
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "variantPrice"
+      ],
+      "message": "Variant price must be greater than 0"
+    }
+  ]
+}
+```
+
+</ResponseExample>

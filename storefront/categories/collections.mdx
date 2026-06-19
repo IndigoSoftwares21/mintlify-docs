@@ -1,0 +1,59 @@
+---
+title: "Get Curated Collections"
+api: "GET https://api.sabivendor.com/api/v1/storefront/shop/{shopId}/collections"
+---
+
+Retrieves active curated collections configured by the merchant (e.g. "Summer Clearance", "New Arrivals"). Collections are groups of items grouped for promotional or display purposes.
+    
+    Use this endpoint to draw banner sections or special collections on the home page.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Publishable Key (`pk_live_...` or `pk_test_...`) generated from the Developer settings in your dashboard.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 5,
+      "name": "Summer Shoe Guide",
+      "slug": "summer-shoe-guide",
+      "description": "Light and breezy shoes for warm weather",
+      "imageUrl": "https://cdn.sabivendor.com/collections/summer.jpg",
+      "sortOrder": 1
+    }
+  ]
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "shopId"
+      ],
+      "message": "Invalid uuid"
+    }
+  ]
+}
+```
+
+</ResponseExample>

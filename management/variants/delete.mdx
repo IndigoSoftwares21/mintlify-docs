@@ -1,0 +1,56 @@
+---
+title: "Delete Variant"
+api: "DELETE https://api.sabivendor.com/api/v1/hub/shop/{shopId}/product/{productId}/variants/{variantId}"
+---
+
+Removes a product variant configuration from inventory database records.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="productId" type="number" required>
+  The unique ID of the product.
+</ParamField>
+
+<ParamField path="variantId" type="number" required>
+  The unique ID of the variant.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Variant deleted successfully"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "variantId"
+      ],
+      "message": "Variant not found"
+    }
+  ]
+}
+```
+
+</ResponseExample>

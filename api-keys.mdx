@@ -1,0 +1,132 @@
+---
+title: API Keys & Authentication
+description: Learn how to authenticate your headless requests and manage API keys
+---
+
+All requests to the Sabi Vendor API are authenticated using API keys. Sabi Vendor uses a **dual-key security model** to protect your store's resources while allowing browser-side client requests.
+
+---
+
+## Key Types
+
+When you go to your store's developer dashboard, you can generate two types of API keys depending on where they will be used:
+
+| Key Type | Prefix | Target Environment | Privileges |
+| :--- | :--- | :--- | :--- |
+| **Public / Publishable** | `pk_live_` or `pk_test_` | Browsers, mobile apps, SPA clients | Read-only access to storefront catalogs, write-only access to checkouts. |
+| **Secret** | `sk_live_` or `sk_test_` | Backend servers, scripts, cron jobs | Complete read-write access to all storefront and shop management endpoints. |
+
+<Warning>
+**Never expose your Secret Key (`sk_`) in client-side code** (like browsers or mobile apps). Anyone who extracts it can modify your catalog, download order history, and access customer details.
+</Warning>
+
+---
+
+## Validation Errors (400 Bad Request)
+
+When your requests fail input validation checks (e.g., missing required fields, invalid UUID formats, or database integrity checks like a non-existent shop), the API returns a `400 Bad Request` status code. 
+
+The response body contains an array of `validationErrors` matching the fields verified by the internal Zod validation schemas.
+
+### Response Body (400 Bad Request)
+```json
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": ["shopId"],
+      "message": "Shop not found"
+    },
+    {
+      "path": ["env"],
+      "message": "Invalid enum value. Expected 'live' | 'test', received 'development'"
+    }
+  ]
+}
+```
+
+---
+
+## How to Authenticate
+
+To authenticate your API requests, pass your API key in either of the following headers:
+
+### 1. Using `X-Shop-API-Key` Header (Recommended)
+This is the cleanest way to pass the API key, especially for custom frontends.
+
+```bash
+X-Shop-API-Key: pk_live_abc123...
+```
+
+### 2. Using `Authorization` Header
+Standard Bearer token format is also supported:
+
+```bash
+Authorization: Bearer pk_live_abc123...
+```
+
+---
+
+## Sample Request
+
+Here is an example of fetching products using a Publishable Key in a request across different programming languages:
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl -X GET "https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products" \
+      -H "X-Shop-API-Key: pk_live_abc123..."
+    ```
+  </Tab>
+  <Tab title="JavaScript">
+    ```javascript
+    fetch('https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products', {
+      method: 'GET',
+      headers: {
+        'X-Shop-API-Key': 'pk_live_abc123...'
+      }
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+    ```
+  </Tab>
+  <Tab title="Axios">
+    ```javascript
+    const axios = require('axios');
+
+    axios.get('https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products', {
+      headers: {
+        'X-Shop-API-Key': 'pk_live_abc123...'
+      }
+    })
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err));
+    ```
+  </Tab>
+  <Tab title="PHP">
+    ```php
+    <?php
+    $ch = curl_init('https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'X-Shop-API-Key: pk_live_abc123...'
+    ]);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    echo $response;
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    import requests
+
+    url = "https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products"
+    headers = {
+        "X-Shop-API-Key": "pk_live_abc123..."
+    }
+    response = requests.get(url, headers=headers)
+    print(response.json())
+    ```
+  </Tab>
+</Tabs>

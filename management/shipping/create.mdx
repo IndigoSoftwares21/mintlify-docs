@@ -1,0 +1,69 @@
+---
+title: "Create Shipping Region"
+api: "POST https://api.sabivendor.com/api/v1/hub/shop/{shopId}/shipping/regions"
+---
+
+Registers a new shipping region rate configuration. Enforces uniqueness so no duplicate rate names or regions exist in the shop.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+### Request Body (JSON)
+
+<ParamField body="regionName" type="string" required>
+  Custom name of the shipping region.
+</ParamField>
+
+<ParamField body="price" type="number" required>
+  Delivery fee in Kobo. Must be at least 0.
+</ParamField>
+
+<ParamField body="isOtherCities" type="boolean">
+  Indicates if this rate serves unmatched secondary cities.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Shipping region rate created successfully",
+  "data": {
+    "id": 13,
+    "regionName": "Lagos Island Delivery",
+    "shippingFeeKobo": 250000,
+    "isOtherCities": false,
+    "isActive": true
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "regionName"
+      ],
+      "message": "A delivery fee with this name or region already exists"
+    }
+  ]
+}
+```
+
+</ResponseExample>

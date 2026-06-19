@@ -1,47 +1,58 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: Quick Start
+description: Get up and running with the Scale API in under 5 minutes
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+Welcome to the Scale API Reference. This guide will walk you through setting up authentication and making your first API requests to load your shop's catalog.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+---
 
 ## Prerequisites
 
-Before you begin, you must have:
+Before making requests, make sure you have:
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+- A registered store on Sabi / Scale.
+- Your store's **Shop ID** (available in your dashboard settings).
+- A **Public / Publishable Key** (`pk_...`) generated from the Developer tab in your dashboard.
 
-## Get started
+---
+
+## 3-Step Setup
+
+Follow these steps to query products on your custom storefront website or mobile app:
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Retrieve your API credentials">
+    Log in to your Scale Dashboard, navigate to **Settings > Developer**, and generate a new **Public** key. Copy the key (e.g. `pk_live_8f3d12...`).
+  </Step>
 
+  <Step title="Add the authentication header">
+    Pass the key in the `X-Shop-API-Key` header with all your storefront requests:
+    
     ```bash
-    npm install your-package
+    X-Shop-API-Key: pk_live_YOUR_KEY
     ```
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
 
+  <Step title="Query your product catalog">
+    Make a request to fetch all active products for your store:
+    
     ```bash
-    your-cli init
-    ```
-  </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
+    curl -X GET "https://api.sabivendor.com/api/v1/storefront/shop/YOUR_SHOP_ID/products" \
+      -H "X-Shop-API-Key: pk_live_YOUR_KEY"
     ```
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+---
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="API Keys & Auth" icon="key" href="/api-keys">
+    Understand the difference between Public and Secret keys
+  </Card>
+  <Card title="Storefront APIs" icon="code" href="/storefront/shop">
+    Explore catalog, category, and checkout endpoints
+  </Card>
+</CardGroup>

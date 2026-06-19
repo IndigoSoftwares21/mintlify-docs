@@ -1,0 +1,103 @@
+---
+title: "Submit Checkout Order"
+api: "POST https://api.sabivendor.com/api/v1/storefront/shop/{shopId}/orders"
+---
+
+Places a new checkout order for customer purchases. This endpoint performs strict validation checks, including:
+    
+    1. Verifies that the customer's name contains only letters and spaces (Zod regex validation).
+    2. Validates that the customer's phone number is a valid Nigerian format (supports prefix variants e.g. `080...`, `234...`, `+234...`).
+    3. Checks product inventory levels (ensuring products or variants have sufficient stock).
+    4. Records the customer details and updates inventory logs dynamically.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Publishable Key (`pk_live_...` or `pk_test_...`) generated from the Developer settings in your dashboard.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+### Request Body
+
+<ParamField body="customerName" type="string" required>
+  Full name of the customer. Must contain only letters and spaces, at least 2 characters.
+</ParamField>
+
+<ParamField body="customerPhoneNumber" type="string" required>
+  Contact phone number. Must be a valid Nigerian number format.
+</ParamField>
+
+<ParamField body="customerEmail" type="string">
+  Email address.
+</ParamField>
+
+<ParamField body="customerAddress" type="string" required>
+  Physical shipping address. Minimum 5 characters.
+</ParamField>
+
+<ParamField body="currencyId" type="number" required>
+  Currency ID reference.
+</ParamField>
+
+<ParamField body="totalPrice" type="number" required>
+  Total price in Kobo (e.g. `1200000` for ₦12,000.00).
+</ParamField>
+
+<ParamField body="orders" type="array" required>
+  List of order items. Each item must contain `productId`, `variantId` (or `null`), and `orderProductQty` (min 1).
+</ParamField>
+
+<ParamField body="paymentChannel" type="string" required>
+  Method used: `bank_transfer`, `cash_on_delivery`, or `card`.
+</ParamField>
+
+<ParamField body="saveCustomer" type="boolean" default="false">
+  Toggles whether this profile should be added to the customer database.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Order placed successfully",
+  "data": {
+    "id": 501,
+    "orderStatus": "pending",
+    "paymentStatus": "pending",
+    "reference": "ORD-501-ABCDE"
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "customerPhoneNumber"
+      ],
+      "message": "Invalid Nigerian phone number. Use format: 08012345678, 2348012345678, or +2348012345678"
+    },
+    {
+      "path": [
+        "customerName"
+      ],
+      "message": "Full name can only contain letters and spaces"
+    }
+  ]
+}
+```
+
+</ResponseExample>

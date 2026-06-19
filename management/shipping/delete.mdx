@@ -1,0 +1,52 @@
+---
+title: "Delete Shipping Region"
+api: "DELETE https://api.sabivendor.com/api/v1/hub/shop/{shopId}/shipping/regions/{id}"
+---
+
+Removes a shipping region rate configuration.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="id" type="number" required>
+  The unique ID of the shipping region rate.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Shipping region rate deleted successfully"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "id"
+      ],
+      "message": "Shipping region not found or does not belong to this shop"
+    }
+  ]
+}
+```
+
+</ResponseExample>

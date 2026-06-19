@@ -1,0 +1,58 @@
+---
+title: "Add Products to Collection"
+api: "POST https://api.sabivendor.com/api/v1/hub/shop/{shopId}/collections/{collectionId}/products"
+---
+
+Maps products to a collection to display them under collection catalog views.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="collectionId" type="number" required>
+  The unique ID of the collection.
+</ParamField>
+
+### Request Body (JSON)
+
+<ParamField body="productIds" type="array" required>
+  List of product integer IDs to map. Must contain at least 1 product ID.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Products added to collection successfully"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "productIds"
+      ],
+      "message": "At least one product ID must be provided"
+    }
+  ]
+}
+```
+
+</ResponseExample>

@@ -1,72 +1,170 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "Scale API",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#22162B",
+    "light": "#8e7aad",
+    "dark": "#120617"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
+  },
+  "metadata": {
+    "og:title": "Scale Headless API",
+    "og:description": "Scale API & Headless Storefront Reference Documentation",
+    "og:image": "https://docs.getscale.ng/og-image.png",
+    "twitter:title": "Scale Headless API",
+    "twitter:description": "Scale API & Headless Storefront Reference Documentation"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "index",
+              "quickstart",
+              "api-keys"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Storefront API (Public)",
+            "pages": [
+              {
+                "group": "Shop Identity",
+                "pages": [
+                  "storefront/shop/resolve",
+                  "storefront/shop/get"
+                ]
+              },
+              {
+                "group": "Products Catalog",
+                "pages": [
+                  "storefront/products/list",
+                  "storefront/products/get"
+                ]
+              },
+              {
+                "group": "Categories",
+                "pages": [
+                  "storefront/categories/list",
+                  "storefront/categories/collections"
+                ]
+              },
+              {
+                "group": "Orders & Checkout",
+                "pages": [
+                  "storefront/orders/create",
+                  "storefront/orders/get"
+                ]
+              },
+              {
+                "group": "Shipping Regions",
+                "pages": [
+                  "storefront/shipping/list"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Management API (Private)",
+            "pages": [
+              {
+                "group": "Product Inventory",
+                "pages": [
+                  "management/products/create",
+                  "management/products/list",
+                  "management/products/get",
+                  "management/products/update",
+                  "management/products/delete",
+                  "management/products/stock-history"
+                ]
+              },
+              {
+                "group": "Product Variants",
+                "pages": [
+                  "management/variants/create",
+                  "management/variants/list",
+                  "management/variants/update",
+                  "management/variants/delete"
+                ]
+              },
+              {
+                "group": "Collections Setup",
+                "pages": [
+                  "management/collections/create",
+                  "management/collections/list",
+                  "management/collections/add-products"
+                ]
+              },
+              {
+                "group": "Order Fulfillment",
+                "pages": [
+                  "management/orders/list",
+                  "management/orders/get",
+                  "management/orders/create",
+                  "management/orders/update"
+                ]
+              },
+              {
+                "group": "Customer Database",
+                "pages": [
+                  "management/customers/create",
+                  "management/customers/list",
+                  "management/customers/get",
+                  "management/customers/update",
+                  "management/customers/delete"
+                ]
+              },
+              {
+                "group": "Storefront Settings",
+                "pages": [
+                  "management/settings/get",
+                  "management/settings/update"
+                ]
+              },
+              {
+                "group": "Shipping Configuration",
+                "pages": [
+                  "management/shipping/list",
+                  "management/shipping/create",
+                  "management/shipping/update",
+                  "management/shipping/delete"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@getscale.ng"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "href": "https://app.sabivendor.com"
     }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/sabivendor",
+      "github": "https://github.com/IndigoSoftwares21"
     }
   }
 }

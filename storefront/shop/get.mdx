@@ -1,0 +1,77 @@
+---
+title: "Get Shop Details"
+api: "GET https://api.sabivendor.com/api/v1/storefront/shop/{shopId}"
+---
+
+Fetches the complete profile details for a shop, including active contact phone numbers, social media channels, support emails, physical addresses, and opening/closing hours.
+    
+    Use this endpoint to construct contact sections, customer support forms, operating hours lists, and store location badges in your storefront application.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Publishable Key (`pk_live_...` or `pk_test_...`) generated from the Developer settings in your dashboard.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": {
+    "id": "d3b07384-d113-4e4e-9828-4e4e98284e4e",
+    "name": "Best Shoes",
+    "description": "Premium footwear for everyone",
+    "shopAddress": "123 Lagos St, Lagos",
+    "shopLogo": "https://cdn.sabivendor.com/logos/shoes.png",
+    "shopBanner": "https://cdn.sabivendor.com/banners/shoes.png",
+    "themeColor": "#FF5733",
+    "fontFamily": "Inter",
+    "templateId": "default",
+    "announcementBarText": "Free shipping on orders over ₦5000!",
+    "showAnnouncementBar": true,
+    "socialLinks": {},
+    "operatingHours": [
+      {
+        "dayOfWeek": 1,
+        "isOpen": true,
+        "openTime": "09:00",
+        "closeTime": "17:00"
+      }
+    ],
+    "contacts": [
+      {
+        "contactChannel": "whatsapp",
+        "contactValue": "+2348012345678"
+      }
+    ]
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "shopId"
+      ],
+      "message": "Invalid UUID format"
+    }
+  ]
+}
+```
+
+</ResponseExample>

@@ -1,20 +1,49 @@
 ---
-title: "Introduction"
-description: "Welcome to your project"
+title: Welcome to Scale
+description: Build your own online storefront using Scale Headless APIs
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+Welcome to the **Scale Developer Documentation** — a comprehensive suite of headless APIs that lets you build your own custom e-commerce experiences on top of Scale.
 
-<Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
-</Tip>
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Get up and running with the Scale API in under 5 minutes.
+  </Card>
+  <Card title="API Keys" icon="key" href="/api-keys">
+    Learn how to authenticate public and private requests.
+  </Card>
+  <Card title="Storefront APIs" icon="code" href="/storefront/shop">
+    Expose your products catalog, handle categories, and submit checkouts.
+  </Card>
+  <Card title="Management APIs" icon="terminal" href="/management/products">
+    Programmatically create products, sync inventory, and update order statuses.
+  </Card>
+</CardGroup>
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file.
-</Card>
+---
+
+## Headless API Architecture
+
+Scale provides two logical layers of API endpoints to power custom integrations:
+
+### 1. Storefront API (Public)
+Designed to run directly in the browser or mobile applications. These endpoints require a **Public / Publishable API Key** (`pk_...`) which is safe to expose in client-side code.
+- Fetch store profiles & operating hours
+- Search and list catalog products/variants
+- Fetch categories & collections
+- Place orders (checkout submissions)
+
+### 2. Shop Management API (Private)
+Designed to run on backend servers or sync scripts. These endpoints require a **Secret API Key** (`sk_...`) which must be kept secret.
+- Full inventory sync (Create, Edit, Delete products and variants)
+- Order management (Fetch list, Update fulfillment/payment statuses)
+- Customer databases & storefront settings management
+
+---
+
+## Developer Support
+
+If you need help or want to report issues with the API:
+
+- View the [GitHub Repository](https://github.com/IndigoSoftwares21/scale_api_docs)
+- Email us at [support@getscale.ng](mailto:support@getscale.ng)

@@ -1,0 +1,77 @@
+---
+title: "List Orders"
+api: "GET https://api.sabivendor.com/api/v1/hub/shop/{shopId}/order"
+---
+
+Retrieves a paginated list of all store orders. Supports filtering by payment status and order fulfillment status.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+### Query Parameters
+
+<ParamField query="limit" type="number" default="20">
+  Number of items to return.
+</ParamField>
+
+<ParamField query="offset" type="number" default="0">
+  Offset for pagination.
+</ParamField>
+
+<ParamField query="orderStatus" type="string">
+  Filter status: `pending`, `confirmed`, `shipped`, `delivered`, `cancelled`.
+</ParamField>
+
+<ParamField query="paymentStatus" type="string">
+  Filter status: `pending`, `paid`, `refunded`, `failed`.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 501,
+      "reference": "ORD-501-ABCDE",
+      "customerName": "Jane Doe",
+      "customerPhoneNumber": "08012345678",
+      "totalPriceKobo": 1250000,
+      "orderStatus": "pending",
+      "paymentStatus": "pending",
+      "createdAt": "2026-06-19T14:30:00.000Z"
+    }
+  ]
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "orderStatus"
+      ],
+      "message": "Invalid enum value. Expected 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled'"
+    }
+  ]
+}
+```
+
+</ResponseExample>
