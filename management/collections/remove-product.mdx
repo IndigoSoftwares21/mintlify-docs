@@ -1,0 +1,56 @@
+---
+title: "Remove Product from Collection"
+api: "DELETE https://api.sabivendor.com/api/v1/hub/shop/{shopId}/collections/{collectionId}/products/{productId}"
+---
+
+Unbinds a specific product from a curated collection.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="collectionId" type="number" required>
+  The unique collection ID.
+</ParamField>
+
+<ParamField path="productId" type="number" required>
+  The product ID to remove.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Product removed from collection successfully"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "productId"
+      ],
+      "message": "Product is not in this collection"
+    }
+  ]
+}
+```
+
+</ResponseExample>

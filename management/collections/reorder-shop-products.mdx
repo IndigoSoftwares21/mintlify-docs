@@ -1,0 +1,64 @@
+---
+title: "Reorder Shop Products"
+api: "PUT https://api.sabivendor.com/api/v1/hub/shop/{shopId}/products/reorder"
+---
+
+Configures display sorting orders on general product listings catalog.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+### Request Body (JSON)
+
+<ParamField body="orders" type="object[]" required>
+  General shop product sorting configurations.
+  <Expandable title="properties">
+    <ParamField body="productId" type="number" required>
+      Product catalog ID.
+    </ParamField>
+    <ParamField body="sortOrder" type="number" required>
+      Display index offset.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Shop products order updated successfully"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "orders",
+        0,
+        "productId"
+      ],
+      "message": "Product not found"
+    }
+  ]
+}
+```
+
+</ResponseExample>

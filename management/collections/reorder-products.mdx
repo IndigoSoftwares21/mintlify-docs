@@ -1,0 +1,68 @@
+---
+title: "Reorder Products in Collection"
+api: "PUT https://api.sabivendor.com/api/v1/hub/shop/{shopId}/collections/{collectionId}/products/reorder"
+---
+
+Configures custom display sorting index for items grouped inside a collection.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="collectionId" type="number" required>
+  The unique collection ID.
+</ParamField>
+
+### Request Body (JSON)
+
+<ParamField body="orders" type="object[]" required>
+  List of sort mapping records.
+  <Expandable title="properties">
+    <ParamField body="productId" type="number" required>
+      Product ID.
+    </ParamField>
+    <ParamField body="sortOrder" type="number" required>
+      Display sorting index order.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Collection products order updated successfully"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "orders",
+        0,
+        "sortOrder"
+      ],
+      "message": "Sort order index must be non-negative"
+    }
+  ]
+}
+```
+
+</ResponseExample>

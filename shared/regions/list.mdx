@@ -1,0 +1,35 @@
+---
+title: "Get Regional Delivery Zones"
+api: "GET https://api.sabivendor.com/api/v1/shared/regions"
+---
+
+Retrieves default delivery regional zones supported in the system.
+
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "South West"
+    },
+    {
+      "id": 2,
+      "name": "North Central"
+    }
+  ]
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "Unexpected validation error",
+  "code": 400
+}
+```
+
+</ResponseExample>

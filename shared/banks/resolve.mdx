@@ -1,0 +1,47 @@
+---
+title: "Resolve Bank Account"
+api: "GET https://api.sabivendor.com/api/v1/shared/banks/resolve"
+---
+
+Verifies bank account details dynamically, returning the authenticated account name to ensure secure payments.
+
+
+### Query Parameters
+
+<ParamField query="bankCode" type="string" required>
+  The unique clearing code of the target bank (e.g. `058`).
+</ParamField>
+
+<ParamField query="accountNumber" type="string" required>
+  The 10-digit NUBAN account number.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": {
+    "accountNumber": "0123456789",
+    "accountName": "JOHN DOE"
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "accountNumber"
+      ],
+      "message": "Account number must be exactly 10 digits"
+    }
+  ]
+}
+```
+
+</ResponseExample>

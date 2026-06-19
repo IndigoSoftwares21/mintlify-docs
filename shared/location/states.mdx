@@ -1,0 +1,35 @@
+---
+title: "Get States"
+api: "GET https://api.sabivendor.com/api/v1/shared/location/states"
+---
+
+Retrieves the master list of all valid Nigerian states along with their system-wide primary database IDs.
+
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 25,
+      "name": "Lagos"
+    },
+    {
+      "id": 26,
+      "name": "Ogun"
+    }
+  ]
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "Unexpected validation error",
+  "code": 400
+}
+```
+
+</ResponseExample>

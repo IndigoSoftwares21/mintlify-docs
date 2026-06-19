@@ -1,0 +1,59 @@
+---
+title: "Get Single Collection"
+api: "GET https://api.sabivendor.com/api/v1/hub/shop/{shopId}/collections/{collectionId}"
+---
+
+Retrieves detailed setup information for a single collection by ID.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="collectionId" type="number" required>
+  The unique collection ID.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": {
+    "id": 5,
+    "name": "Summer Specials",
+    "slug": "summer-specials",
+    "description": "Warm weather clothing",
+    "imageUrl": "https://cdn.sabivendor.com/collections/summer.jpg",
+    "isActive": true
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "collectionId"
+      ],
+      "message": "Collection not found"
+    }
+  ]
+}
+```
+
+</ResponseExample>

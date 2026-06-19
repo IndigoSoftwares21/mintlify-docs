@@ -8,10 +8,17 @@ Resolves a domain name or the active API key origin to retrieve the correspondin
     When loading your custom storefront headless frontend (e.g. Next.js, Gatsby, or Vue), you should call this endpoint first. The returned parameters let you dynamically bind theme colors, fonts, checkout variables, and announcement bar settings in real-time.
 
 
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Publishable Key (`pk_live_...` or `pk_test_...`) generated from the Developer settings in your dashboard.
+</ParamField>
+
+
 ### Query Parameters
 
-<ParamField query="domain" type="string">
-  The host name to resolve (e.g. `myshop.sabivendor.com`). If this parameter is omitted, the API will fall back to resolving the host from the browser's `Origin` or `Referer` headers.
+<ParamField query="domain" type="string" required>
+  The host name to resolve (e.g. `myshop.sabivendor.com`).
 </ParamField>
 
 

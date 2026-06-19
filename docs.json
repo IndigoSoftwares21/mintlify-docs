@@ -55,10 +55,9 @@
                 ]
               },
               {
-                "group": "Categories",
+                "group": "Curated Collections",
                 "pages": [
-                  "storefront/categories/list",
-                  "storefront/categories/collections"
+                  "storefront/collections/list"
                 ]
               },
               {
@@ -79,6 +78,32 @@
           {
             "group": "Management API (Private)",
             "pages": [
+              {
+                "group": "Shop Profile",
+                "pages": [
+                  "management/shop/get",
+                  "management/shop/update"
+                ]
+              },
+              {
+                "group": "Storefront Settings",
+                "pages": [
+                  "management/settings/get",
+                  "management/settings/update"
+                ]
+              },
+              {
+                "group": "Custom Domains",
+                "pages": [
+                  "management/domains/list",
+                  "management/domains/create",
+                  "management/domains/update",
+                  "management/domains/delete",
+                  "management/domains/check-scale",
+                  "management/domains/check-availability",
+                  "management/domains/instructions"
+                ]
+              },
               {
                 "group": "Product Inventory",
                 "pages": [
@@ -104,7 +129,15 @@
                 "pages": [
                   "management/collections/create",
                   "management/collections/list",
-                  "management/collections/add-products"
+                  "management/collections/get",
+                  "management/collections/update",
+                  "management/collections/delete",
+                  "management/collections/add-products",
+                  "management/collections/remove-product",
+                  "management/collections/get-products",
+                  "management/collections/reorder-products",
+                  "management/collections/reorder-shop-products",
+                  "management/collections/get-product-collections"
                 ]
               },
               {
@@ -127,19 +160,37 @@
                 ]
               },
               {
-                "group": "Storefront Settings",
-                "pages": [
-                  "management/settings/get",
-                  "management/settings/update"
-                ]
-              },
-              {
                 "group": "Shipping Configuration",
                 "pages": [
                   "management/shipping/list",
                   "management/shipping/create",
                   "management/shipping/update",
                   "management/shipping/delete"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Shared API Utilities",
+            "pages": [
+              {
+                "group": "Locations Info",
+                "pages": [
+                  "shared/location/states",
+                  "shared/location/lga"
+                ]
+              },
+              {
+                "group": "Delivery Zones",
+                "pages": [
+                  "shared/regions/list"
+                ]
+              },
+              {
+                "group": "Payout Banks",
+                "pages": [
+                  "shared/banks/list",
+                  "shared/banks/resolve"
                 ]
               }
             ]

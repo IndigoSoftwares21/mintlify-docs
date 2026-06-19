@@ -1,0 +1,65 @@
+---
+title: "Add Domain"
+api: "POST https://api.sabivendor.com/api/v1/hub/shop/{shopId}/domains"
+---
+
+Registers a new subdomain (ending with .sabivendor.com) or a fully qualified custom domain.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+### Request Body (JSON)
+
+<ParamField body="domain" type="string" required>
+  Subdomain or custom domain name (e.g. `myshop.com` or `custom.sabivendor.com`).
+</ParamField>
+
+<ParamField body="type" type="string" required>
+  `subdomain` or `custom`.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "message": "Domain added successfully",
+  "data": {
+    "id": 2,
+    "domain": "myshop.com",
+    "type": "custom",
+    "isPrimary": false,
+    "isActive": false
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "domain"
+      ],
+      "message": "Domain is already taken"
+    }
+  ]
+}
+```
+
+</ResponseExample>

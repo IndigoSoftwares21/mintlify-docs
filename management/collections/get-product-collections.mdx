@@ -1,0 +1,58 @@
+---
+title: "Get Collections Mapping for Product"
+api: "GET https://api.sabivendor.com/api/v1/hub/shop/{shopId}/product/{productId}/collections"
+---
+
+Retrieves list of collection entries that a specific product catalog ID is grouped under.
+
+
+
+### Authorizations
+
+<ParamField header="X-Shop-API-Key" type="string" required>
+  Your Secret API Key (`sk_live_...` or `sk_test_...`) generated from the Developer dashboard. Must be kept secret.
+</ParamField>
+
+
+### Path Parameters
+
+<ParamField path="shopId" type="string" required>
+  The unique UUID of the shop.
+</ParamField>
+
+<ParamField path="productId" type="number" required>
+  The product ID to query.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 5,
+      "name": "Summer Specials",
+      "slug": "summer-specials"
+    }
+  ]
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "productId"
+      ],
+      "message": "Product not found"
+    }
+  ]
+}
+```
+
+</ResponseExample>

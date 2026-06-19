@@ -1,0 +1,51 @@
+---
+title: "Get LGAs in State"
+api: "GET https://api.sabivendor.com/api/v1/shared/location/lga/{stateId}"
+---
+
+Retrieves all Local Government Areas mapped inside a specific State.
+
+
+### Path Parameters
+
+<ParamField path="stateId" type="number" required>
+  The state database ID.
+</ParamField>
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 450,
+      "name": "Ikeja",
+      "stateId": 25
+    },
+    {
+      "id": 451,
+      "name": "Surulere",
+      "stateId": 25
+    }
+  ]
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "FORM_VALIDATION_ERROR",
+  "code": 400,
+  "validationErrors": [
+    {
+      "path": [
+        "stateId"
+      ],
+      "message": "State not found"
+    }
+  ]
+}
+```
+
+</ResponseExample>

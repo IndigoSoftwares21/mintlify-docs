@@ -1,0 +1,37 @@
+---
+title: "Get Banks"
+api: "GET https://api.sabivendor.com/api/v1/shared/banks"
+---
+
+Lists standard commercial bank references and clearing codes available for setting up vendor settlement payouts.
+
+
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Access Bank",
+      "code": "044"
+    },
+    {
+      "id": 2,
+      "name": "Guaranty Trust Bank",
+      "code": "058"
+    }
+  ]
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "Unexpected validation error",
+  "code": 400
+}
+```
+
+</ResponseExample>
