@@ -209,12 +209,12 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://app.sabivendor.com"
+      "href": "https://app.getscale.ng"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/sabivendor",
+      "x": "https://x.com/Scale",
       "github": "https://github.com/IndigoSoftwares21"
     }
   }
